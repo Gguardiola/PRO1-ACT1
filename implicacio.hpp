@@ -1,0 +1,54 @@
+#ifndef IMPLICACIO_HPP
+#define IMPLICACIO_HPP
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Implicacio{
+// Tipus de modul: dades
+// Descripcio del tipus: Guarda conjunciones logicas de variables (implicaciones) ejemplo: ab -> c.
+//Esta clase trata literalmente la implicacion de la parte izquierda de -> respecto a la parte derecha
+
+    
+private:
+
+    
+public:
+        
+    //Constructors 
+    Implicacio();
+    /* Pre: cert */
+    /* Post: Si no hay implicación no se puede construir un objeto generico */
+    Implicacio(const string& i);
+    /// PRE: cert
+    /// POST: el parametre implıcit conte els atributs de l’string
+    /// que t´e la sintaxi e1 e2 e3 ... e_n -> d1 d2 d3 ... d_m
+    /// on e_i i d_i s´on car`acters entre ’a’... ’z’ i
+    /// n >= 1 i m >= 1.
+
+
+    ~Implicacio();
+    /* Post: esborra automaticament els objectes locals en sortir d'un ambit 
+	   de visibilitat */
+   
+   
+    //Modificadors
+
+    //Consultors
+
+    //Lectura i escriptura
+    friend ostream& operator<<(ostream &os, const Implicacio &i);
+    /* Pre: cert (completem els detalls de format quan coneguem la 
+       implementacio) */
+    /* Post: s'han escrit els atributs del punt p al canal estandard de 
+       sortida */
+    friend istream& operator>>(istream &is, const Implicacio &i);
+    /* Pre: cert */
+    /* Post: el punt p passa a tenir els atributs llegits del canal  
+       estandard d'entrada */
+};
+#endif
