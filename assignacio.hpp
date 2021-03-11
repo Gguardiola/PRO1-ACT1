@@ -1,6 +1,7 @@
 #ifndef ASSIGNACIO_HPP
 #define ASSIGNACIO_HPP
 #include <iostream>
+#include <bitset>
 
 using namespace std;
 
@@ -12,7 +13,8 @@ private:
 
     vector <bool> boolAssig;
     vector <char> charAssig;
-
+    int it; 
+               
 public:
 
 //Constructores
@@ -35,7 +37,7 @@ void setVariables (vector <char> vars);
             //vector={a,b,c,d,···,z}
 void operator++(const Assignacio &a);
     /* Pre: cierto*/
-    /* Post: calcula la siguiente asignacion (orden total)*/
+    /* Post: calcula la siguiente asignacion (orden total:empezando por la ultima variable)*/
 
 //Consultores
 bool getVariable (char var);
