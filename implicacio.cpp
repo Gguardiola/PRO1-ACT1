@@ -58,6 +58,28 @@ vector<char> implicacio::getAllVariables() const{
     
    return all;
 }
+
+vector<char> implicacio::getIzq() const{
+//PRE: Cert
+//POST: Devuelve un VECTOR de char con todas las variables de la izquierda de "->"" EJ.: [a,b,c,d..]
+
+//DEBUG
+/*
+for(int i = 0; i<int(izq.size());i++){
+    cout<<izq[i]<<endl;
+}   */
+return izq;
+}
+vector<char> implicacio::getDer() const{
+//PRE: Cert
+//POST: Devuelve un VECTOR de char con todas las variables de la derecha "->"" EJ.: [a,b,c,d..]   
+//DEBUG
+/*
+for(int i = 0; i<int(der.size());i++){
+    cout<<der[i]<<endl;
+}  */
+return der;
+}
    
 //Lectura i escriptura
 ///ostream& operator<<(ostream &os, const Implicacio &i){
@@ -70,12 +92,14 @@ vector<char> implicacio::getAllVariables() const{
 //return os;
 
 ///}
-//istream& operator>>(istream &is, const Implicacio &i){
-/* Pre: cert */
-/* Post: el punt p passa a tenir els atributs llegits del canal  
-    estandard d'entrada */
+ostream& operator<<(ostream &os, const implicacio &i){
+/* Pre: cert (completem els detalls de format quan coneguem la 
+    implementacio) */
+/* Post: s'han escrit els atributs del punt p al canal estandard de 
+    sortida */
+    for(char j: i.izq) os<<j<<" ";
+    os<<"-> ";
+    for(char x: i.der) os<<x<<" ";
+    return os;
 
-
-
-//}
-//}
+}

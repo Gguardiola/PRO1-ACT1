@@ -11,6 +11,11 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
     vector<char> varsImp;
     bool repe = false;
 
+    //DEBUG
+    /*for(int i = 0;i<int(teoria.size());i++){
+       cout<<teoria[i]<<endl;   
+    }*/
+
     for(int i = 0;i<int(teoria.size());i++){
         varsImp = teoria[i].getAllVariables();
         for (char h: varsImp){
@@ -41,10 +46,24 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
     //DEBUG
     //for (char x: totalAssig)   cout<<x<<endl;
 	Assignacio a(int(totalAssig.size()));
-
 	a.setVariables(totalAssig);
 
+    //DEBUG
+    /*
+    cout<<"izq"<<endl;
+    vector<char> izq = teoria[0].getIzq();
+    for(int i = 0; i<int(izq.size());i++){
+        cout<<izq[i]<<endl;
+    }   
+    cout<<"der"<<endl;
+    vector<char> der = teoria[0].getDer();
+    for(int i = 0; i<int(der.size());i++){
+        cout<<der[i]<<endl;
+    } */     
+
+
 //DEBUG PRUEBAS
+/*
 	int max = pow(2,(int(totalAssig.size())));
 	cout<<max<<endl;
 	cout<<"final?"<<a.isFinal()<<endl;
@@ -80,7 +99,7 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
 		cout<<"============"<<endl;
 		max--;
 		//cout<<"final?"<<a.isFinal()<<endl;
-	}	    
+	}	   */ 
 return teoria;
 
 }

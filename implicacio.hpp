@@ -44,16 +44,23 @@ public:
    vector<char> getAllVariables() const;
    //PRE: Cert
    //POST: Devuelve un VECTOR de char con todas las variables EJ.: [a,b,c,d..]
-
+   vector<char> getIzq() const;
+   //PRE: Cert
+   //POST: Devuelve un VECTOR de char con todas las variables de la izquierda de "->"" EJ.: [a,b,c,d..]
+   vector<char> getDer() const;
+   //PRE: Cert
+   //POST: Devuelve un VECTOR de char con todas las variables de la derecha "->"" EJ.: [a,b,c,d..]   
     //Lectura i escriptura
-   // friend ostream& operator<<(ostream &os, const Implicacio &i);
+   friend ostream& operator<<(ostream &os, const implicacio &i);
     /* Pre: cert (completem els detalls de format quan coneguem la 
        implementacio) */
     /* Post: s'han escrit els atributs del punt p al canal estandard de 
        sortida */
-   // friend istream& operator>>(istream &is, const Implicacio &i);
+  // friend istream& operator>>(istream &is, const implicacio &i);
     /* Pre: cert */
     /* Post: el punt p passa a tenir els atributs llegits del canal  
        estandard d'entrada */
+   
+
 };
 #endif
