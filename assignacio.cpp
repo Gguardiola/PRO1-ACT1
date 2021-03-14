@@ -10,10 +10,10 @@ Assignacio:: Assignacio(){
     //PRE: cierto.
     //POST: el resultado es una asignacion sin variables.
 
-//error 404 not FOUND
+    //pass
+    //no se va a acceder
 
 }
-
 
 Assignacio:: Assignacio (int n){
     //PRE: cierto.
@@ -22,7 +22,6 @@ Assignacio:: Assignacio (int n){
         boolAssig.push_back(false);
     }    
     it=0;
-    
 
 }
 //Destructor

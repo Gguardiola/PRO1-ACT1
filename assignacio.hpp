@@ -54,8 +54,5 @@ bool isFinal ();
     //PRE: cierto.
     //POST: devuelve true si el objeto se encuentra en la asignacion final (todas true)
 
-
-
-
 };
 #endif

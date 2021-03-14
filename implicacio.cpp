@@ -1,5 +1,6 @@
 #include "implicacio.hpp"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 implicacio::implicacio(){
@@ -27,15 +28,7 @@ implicacio::implicacio(const string &i){
         }
              
     }	
-    // DEBUG
-    /*
-    for(int line = 0; line<int(izq.size());line++){
-        cout<<izq[line]<<endl;
-    }	
-    for(int line = 0; line<int(der.size());line++){
-        cout<<der[line]<<endl;
-    }	*/    
-    //getAllVariables();
+
 }
 
 implicacio:: ~implicacio(){
@@ -49,13 +42,7 @@ implicacio:: ~implicacio(){
 vector<char> implicacio::getAllVariables() const{
    //PRE: Cert
    //POST: Devuelve un VECTOR de char con todas las variables EJ.: [a,b,c,d..]
- 
-   //DEBUG
-   /*
-    for(int i = 0; i<int(all.size());i++){
-        cout<<all[i]<<endl;
-    }*/
-    
+
    return all;
 }
 
@@ -63,35 +50,19 @@ vector<char> implicacio::getIzq() const{
 //PRE: Cert
 //POST: Devuelve un VECTOR de char con todas las variables de la izquierda de "->"" EJ.: [a,b,c,d..]
 
-//DEBUG
-/*
-for(int i = 0; i<int(izq.size());i++){
-    cout<<izq[i]<<endl;
-}   */
-return izq;
+    return izq;
 }
 vector<char> implicacio::getDer() const{
 //PRE: Cert
 //POST: Devuelve un VECTOR de char con todas las variables de la derecha "->"" EJ.: [a,b,c,d..]   
-//DEBUG
-/*
-for(int i = 0; i<int(der.size());i++){
-    cout<<der[i]<<endl;
-}  */
-return der;
+
+    return der;
 }
-   
+
+//Modificadores
+
 //Lectura i escriptura
-///ostream& operator<<(ostream &os, const Implicacio &i){
-/* Pre: cert (completem els detalls de format quan coneguem la 
-    implementacio) */
-/* Post: s'han escrit els atributs del punt p al canal estandard de 
-    sortida */
 
-//os<<parte izquierda<<"->"<<parte derecha<<endl;
-//return os;
-
-///}
 ostream& operator<<(ostream &os, const implicacio &i){
 /* Pre: cert (completem els detalls de format quan coneguem la 
     implementacio) */

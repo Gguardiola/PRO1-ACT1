@@ -11,11 +11,6 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
     vector<char> varsImp;
     bool repe = false;
 
-    //DEBUG
-    /*for(int i = 0;i<int(teoria.size());i++){
-       cout<<teoria[i]<<endl;   
-    }*/
-
     for(int i = 0;i<int(teoria.size());i++){
         varsImp = teoria[i].getAllVariables();
         for (char h: varsImp){
@@ -28,9 +23,7 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
             }else{repe = false;}            
         }
     }
-    //DEBUG
-    //for (char x: totalAssig)   cout<<x<<endl;
-    
+
     bool detec = true;
     while(detec){
         detec = false;
@@ -43,103 +36,88 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
             }
         }
     }
-    //DEBUG
-    //for (char x: totalAssig)   cout<<x<<endl;
-	Assignacio a(int(totalAssig.size()));
+
+    int maxSize = int(totalAssig.size());
+	Assignacio a(maxSize);
 	a.setVariables(totalAssig);
 
-    //DEBUG
-    /*
-    cout<<"izq"<<endl;
-    vector<char> izq = teoria[0].getIzq();
-    for(int i = 0; i<int(izq.size());i++){
-        cout<<izq[i]<<endl;
-    }   
-    cout<<"der"<<endl;
-    vector<char> der = teoria[0].getDer();
-    for(int i = 0; i<int(der.size());i++){
-        cout<<der[i]<<endl;
-    } */     
+    vector<vector<bool>> opImp;
+    for(int i = 0;i<int(teoria.size());i++){
+        vector<bool> column;
+       
+        while(!a.isFinal()){
+            vector<char> izq = teoria[i].getIzq();
+            vector<char> der = teoria[i].getDer();
+            
+            vector<bool> boolIzq,boolDer;
+            bool opIzq,opDer;
 
+            bool current;
+            for(int i = 0; i<int(izq.size());i++){
+                current = a.getVariable(izq[i]);
+                current = not current;
+                boolIzq.push_back(current);
+            } 
+            bool first = true;
+            for(int i = 0; i<int(boolIzq.size());i++){
+                if(first) {
+                    opIzq = boolIzq[i];
+                    first = false;
+                }
+                else{
+                    opIzq = opIzq || boolIzq[i];
+                }                        
+            }   
 
-//DEBUG PRUEBAS
-/*
-	int max = pow(2,(int(totalAssig.size())));
-	cout<<max<<endl;
-	cout<<"final?"<<a.isFinal()<<endl;
-	while(max>0){
+            for(int i = 0; i<int(der.size());i++){
+                boolDer.push_back(a.getVariable(der[i]));
+            } 
 
-		int i = 0;
-		while(i<int(totalAssig.size())){
-			cout<<a.getVariable(totalAssig[i])<<endl;
-			i++;
-			
-			
-		}
-		++a;
-		cout<<"============"<<endl;
-		max--;
-		//cout<<"final?"<<a.isFinal()<<endl;
-	}
-	cout<<"final?"<<a.isFinal()<<endl;
-	a.resetAssig();
+            first = true;
+            for(int i = 0; i<int(boolDer.size());i++){
+                if(first) {
+                    opDer = boolDer[i];
+                    first = false;
+                }
+                else{
+                    opDer = opDer || boolDer[i];
+                }                      
+            }                         
+            bool row = opIzq || opDer;
+            column.push_back(row);
+            ++a;
+        }
 
-	cout<<"final?"<<a.isFinal()<<endl;
-	max = pow(2,(int(totalAssig.size())));
-	while(max>0){
+        opImp.push_back(column);
+              
+        a.resetAssig();
+    }
 
-		int i = 0;
-		while(i<int(totalAssig.size())){
-			cout<<a.getVariable(totalAssig[i])<<endl;
-			i++;
-			
-			
-		}
-		++a;
-		cout<<"============"<<endl;
-		max--;
-		//cout<<"final?"<<a.isFinal()<<endl;
-	}	   */ 
-return teoria;
+    vector<implicacio> base;
+    bool detecModel;
+    int models;
+    for(int i = 0;i<int(teoria.size());i++){
+        models = 0;
+        for(int x = 0;x<int(teoria.size());x++){
+            detecModel = true;
+            if(x!=i){
+                int j = 0;
+                while(j<int(opImp[i].size()) and detecModel){
+                    if(opImp[x][j] == true and opImp[i][j] == false){
+                        detecModel = false;
+                        models++;
+                    }
+                    j++;
+                }
+            }      
+        }
+
+        if(models == int(teoria.size())-1){
+            base.push_back(teoria[i]);
+        }                
+    }
+
+return base;
 
 }
 
-
-/*vector<char> letrasImplicaciones(stack<char> q){
-//PRE: cert.
-//POST: ordena y elimina las letras repetidas y lo devuelve como vector
-    stack<char> aux;
-    while(!q.empty()){
-        char x = q.top();
-        q.pop();
-        while(!aux.empty() and aux.top() < x){
-
-            q.push(aux.top());
-            aux.pop();
-
-        }
-        aux.push(x);
-    }
-    vector<char> order;
-
-    //vector = stack
-    char repeCheck;
-    bool firstIt = true;
-    while(!aux.empty()){
-        if(!firstIt){
-            if(repeCheck != aux.top()){
-                order.push_back(aux.top());
-            }
-            repeCheck = aux.top();
-            aux.pop();
-        }
-        else{
-            firstIt = false;
-            order.push_back(aux.top());
-            repeCheck = aux.top();
-            aux.pop();            
-        }
-
-    }
-    return order;
-}*/

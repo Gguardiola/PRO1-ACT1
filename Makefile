@@ -8,11 +8,11 @@ test.exe: test.o assignacio.o implicacio.o auxiliar.o
 #	Descomenteu les següents línies si voleu executar tots
 #	els jocs de proves.
 
-	./test.exe < sample1.inp
-	./test.exe < sample2.inp	
-	./test.exe < sample3.inp
-	./test.exe < sample4.inp 
-	./test.exe < sample5.inp	
+#	./test.exe < sample1.inp
+#	./test.exe < sample2.inp	
+#	./test.exe < sample3.inp
+#	./test.exe < sample4.inp 
+#	./test.exe < sample5.inp	
 #	./test.exe < sample1.inp > sample1.cor
 #	./test.exe < sample2.inp > sample2.cor
 #	./test.exe < sample3.inp > sample3.cor
