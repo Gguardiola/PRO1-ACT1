@@ -10,8 +10,9 @@ implicacio::implicacio(){
 }
 
 implicacio::implicacio(const string &i){
-    /* Pre: cert */
-    /* Post: Si no hay implicación no se puede construir un objeto generico */
+    /// PRE: cert
+    /// POST: Partiendo del parametro implicito i, divida las variables del lado izq y lado der teniendo ">" como referencia de cada lado
+    // también guarda todas en un vector all para tratarlas en el getter getAllVariables()
     bool rightSide = false;
     for(int line = 0; line<int(i.size());line++){
         if(i[line] == '>') rightSide = true;
@@ -64,10 +65,8 @@ vector<char> implicacio::getDer() const{
 //Lectura i escriptura
 
 ostream& operator<<(ostream &os, const implicacio &i){
-/* Pre: cert (completem els detalls de format quan coneguem la 
-    implementacio) */
-/* Post: s'han escrit els atributs del punt p al canal estandard de 
-    sortida */
+/* Pre: cert  */
+/* Post: devuelve por el canal estandar de salida una string con el lado izq y derecho con el formato: ejemplo:"ab -> c" */
     for(char j: i.izq) os<<j<<" ";
     os<<"-> ";
     for(char x: i.der) os<<x<<" ";

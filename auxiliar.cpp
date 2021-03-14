@@ -7,10 +7,12 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
 ///		  si i només si es compleixen TOTES aquestes condicions conjuntament:
 ///		  (1) H és al paràmetre
 ///		  (2) no hi ha cap altra H' al paràmetre tal que H' |= H tal que H != H'.
-    vector <char> totalAssig;
-    vector<char> varsImp;
+
+    vector <char> totalAssig;//Guarda todas las variables posibles EJ: ab -> f; q -> j | totalAssig = [a,b,f,q,j]
+    vector<char> varsImp;//Guarda todas las variables de un solo objeto implicación
     bool repe = false;
 
+    //Bucle que guarda todas las variables posibles y OMITE las repetidas
     for(int i = 0;i<int(teoria.size());i++){
         varsImp = teoria[i].getAllVariables();
         for (char h: varsImp){
@@ -24,6 +26,7 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
         }
     }
 
+    //bucle que ORDENA las variables
     bool detec = true;
     while(detec){
         detec = false;
@@ -37,11 +40,13 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
         }
     }
 
+    //Creación del objeto asignación
     int maxSize = int(totalAssig.size());
 	Assignacio a(maxSize);
 	a.setVariables(totalAssig);
 
-    vector<vector<bool>> opImp;
+    //Bucle que CREA cada columna de su implicación correspondiente 
+    vector<vector<bool>> opImp;//Guarda todas las columnas EJ: [[false, false, false true..],[false, false, false true..]...]
     for(int i = 0;i<int(teoria.size());i++){
         vector<bool> column;
        
@@ -96,6 +101,7 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
     vector<implicacio> base;
     bool detecModel;
     int models;
+    //Bucle que verifica las implicaciones que modelan y las que no
     for(int i = 0;i<int(teoria.size());i++){
         models = 0;
         for(int x = 0;x<int(teoria.size());x++){
@@ -111,7 +117,7 @@ vector<implicacio> calculaBase(const vector<implicacio> &teoria){
                 }
             }      
         }
-
+        //si models mide igual que la cantidad de implicaciones (menos la misma implicación que estamos tratando) significa que es BASE.
         if(models == int(teoria.size())-1){
             base.push_back(teoria[i]);
         }                

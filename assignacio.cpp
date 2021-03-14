@@ -8,16 +8,12 @@ using namespace std;
 //Constructores
 Assignacio:: Assignacio(){
     //PRE: cierto.
-    //POST: el resultado es una asignacion sin variables.
-
-    //pass
-    //no se va a acceder
-
+    //POST: no puede realizar asignaciones si no hay valor para las n variables.
 }
 
 Assignacio:: Assignacio (int n){
     //PRE: cierto.
-    //POST: el resultado es una asignacion con n variables en orden alfabetico.
+    //POST: el resultado es una asignacion con n variables bool.
     for (int i=0; i<n;i++){
         boolAssig.push_back(false);
     }    
@@ -32,8 +28,8 @@ Assignacio::~Assignacio(){
 //Modificadores
 void Assignacio::setVariables (vector<char> vars){
     //PRE: cierto.
-    //POST: modifica un vector <char> vacio, añadiendo las variables de la asignación.
-            //vector={a,b,c,d,···,z}
+    //POST: rellena el vector de variables char del objeto con todas las variables posibles de las implicaciones.
+    //De este modo se podrá relacionar las variables con su valor booleano del otro vector a la hora de operar las implicaciones. Ejemplo: "a" (posición 0 del vector char) se relaciona con "false"(posición 0 del vector bool)
     
     for (int i=0; i<int(vars.size());i++){
         charAssig.push_back(vars[i]);
@@ -43,7 +39,7 @@ void Assignacio::setVariables (vector<char> vars){
 
 void Assignacio::resetAssig (){
     //PRE: cierto.
-    //POST: reinicia el iterador it para reiniciar las asignaciones binarias (todo a false y listo para volver a operar las combinaciones desde 0).
+    //POST: reinicia el iterador it para reiniciar las asignaciones (todo a false y listo para volver a operar las combinaciones desde cero).
     //ej: false, false, false, true, true | it = 3 -------- false, false, false, false, false | it = 0;
     it = 0;
     for (int i=0; i<int(boolAssig.size());i++){
@@ -52,7 +48,7 @@ void Assignacio::resetAssig (){
 }
 void Assignacio::operator++() {
     /* Pre: cierto*/
-    /* Post: calcula la siguiente asignacion (orden total:empezando por la ultima variable)*/
+    /* Post: calcula la siguiente asignacion. Ejemplo: it=2 boolAssig=[false,true,false] ----- it++ (it=3) boolAssig=[false,true,true]*/
     it++;
     bitset <26> ordre(it);//lo lee alreves!!
     for (int i=0; i<int(boolAssig.size());i++){
@@ -70,8 +66,9 @@ void Assignacio::operator++() {
 //Consultores
 bool Assignacio::getVariable (char var){
     //PRE: cierto.
-    //POST: devuelve el valor bool correspondiente a la variable.
-            //input (a) = output (false)
+    //POST: devuelve el valor bool correspondiente a la variable introducida
+    //Busca la variable en el vector de chars y como mide igual que el vector de booleanos devuelve el valor bool que corresponde en el vector bool
+            //Ejemplo: input (a) = output (false)
 
     bool found=false;
     int i=0;

@@ -14,9 +14,9 @@ class implicacio{
 
     
 private:
-   vector<char> izq;
-   vector<char> der;
-   vector<char> all;
+   vector<char> izq; //Guarda la parte izquierda de la implicación
+   vector<char> der; //Guarda la parte derecha de la implicación
+   vector<char> all; //Guarda todas las variables para poder juntar el tamaño de todas las implicaciones y crear las asignaciones. (linea 15-27 auxiliar.cpp)
     
 public:
         
@@ -26,11 +26,8 @@ public:
     /* Post: Si no hay implicación no se puede construir un objeto generico */
     implicacio(const string& i);
     /// PRE: cert
-    /// POST: el parametre implıcit conte els atributs de l’string
-    /// que t´e la sintaxi e1 e2 e3 ... e_n -> d1 d2 d3 ... d_m
-    /// on e_i i d_i s´on car`acters entre ’a’... ’z’ i
-    /// n >= 1 i m >= 1.
-
+    /// POST: Partiendo del parametro implicito i, divida las variables del lado izq y lado der teniendo ">" como referencia de cada lado
+    // también guarda todas en un vector all para tratarlas en el getter getAllVariables()
 
     ~implicacio();
     /* Post: esborra automaticament els objectes locals en sortir d'un ambit 
@@ -49,15 +46,10 @@ public:
    vector<char> getDer() const;
    //PRE: Cert
    //POST: Devuelve un VECTOR de char con todas las variables de la derecha "->"" EJ.: [a,b,c,d..]   
-   vector<bool> getImplicaciones() const;
-   //PRE: Cierto
-   //POST: devuelve el vector de implicaciones en el objeto   
-    //Lectura i escriptura
+
    friend ostream& operator<<(ostream &os, const implicacio &i);
-    /* Pre: cert (completem els detalls de format quan coneguem la 
-       implementacio) */
-    /* Post: s'han escrit els atributs del punt p al canal estandard de 
-       sortida */
+   /* Pre: cert  */
+   /* Post: devuelve por el canal estandar de salida una string con el lado izq y derecho con el formato: ejemplo:"ab -> c" */
    
 
 };
